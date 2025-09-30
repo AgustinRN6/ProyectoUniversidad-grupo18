@@ -19,7 +19,9 @@ public class Conexion {
     public Connection buscarConexion(){
     if(conexion == null){// si conexion no esta establecida 
         try{
+        //cargamos los drivers de jdbc
         Class.forName("org.mariadb.jdbc.Driver");
+        //abrimos la conexion a la base de datos
         conexion = DriverManager.getConnection(url, user, psw);
         
         }catch(java.lang.ClassNotFoundException error){

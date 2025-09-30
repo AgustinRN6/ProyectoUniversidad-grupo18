@@ -14,12 +14,15 @@ public class AlumnosData{
 private Connection con=null;
 
 public AlumnosData(Conexion conexion){
-this.con = conexion.buscarConexion();
+    //establecemos conexion con la base de datos mediante el metodo .buscarConexion()
+    this.con = conexion.buscarConexion();
+                                     
 }
 
 public void cargarAlumno(Alumno a){
     try {
-        String sql = "INSERT INTO alumno(dni, nombre, apellido, fechaNacimiento, estado)VALUES(?,?,?,?,?)";//sentencia sql
+        //Sentencia sql.
+        String sql = "INSERT INTO alumno(dni, nombre, apellido, fechaNacimiento, estado)VALUES(?,?,?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ps.setInt(1, a.getDni());
         ps.setString(2, a.getNombre());
@@ -27,11 +30,11 @@ public void cargarAlumno(Alumno a){
         ps.setDate(4, Date.valueOf(a.getFechaNacimiento()));
         ps.setBoolean(5, true);
         
-        if(ps.executeUpdate()> 0){//modificamos la tabla
+        if(ps.executeUpdate()> 0){//devuelve un entero con el numero de filas afectadas
             System.out.println("Alumno agregado");
         }
         
-        //le asignamos el id auto_increment
+        //le asignamos el id auto_increment al alumno de java
         ResultSet rs = ps.getGeneratedKeys();
         while(rs.next()){
         a.setId(rs.getInt(1));
@@ -45,10 +48,11 @@ public void cargarAlumno(Alumno a){
 }
 
 public void buscarAlumno(int id){
+    //sentencia sql
     String sqlSL="SELECT * FROM alumno WHERE dni ="+id+";";
     try{
     PreparedStatement ps = con.prepareStatement(sqlSL);
-    ResultSet rs = ps.executeQuery();
+    ResultSet rs = ps.executeQuery();//nos devuelve el resultado de la consulta de tipo Result Set
     while(rs.next()){
         System.out.println("Alumno: ");
         System.out.println("Dni: "+ rs.getString("dni"));
@@ -63,6 +67,30 @@ public void buscarAlumno(int id){
     
 }
 
+public void darDeBaja(int dni){
+
+    String sqlUP="UPDATE alumno SET estado='0' WHERE alumno.dni =' "+dni+" ';";
+    try{
+    PreparedStatement ps = con.prepareStatement(sqlUP);
+    if(ps.executeUpdate()> 0){
+        System.out.println("Alumno dado de baja!!!");
+    }
+    
+    }catch(java.sql.SQLException error){
+        JOptionPane.showMessageDialog(null, error.getMessage());
+    }
+}
+public void darDeAlta(int dni){
+    String sqlUP="UPDATE alumno SET estado='1' WHERE alumno.dni ='"+dni+"';";
+    try{
+    PreparedStatement ps= con.prepareStatement(sqlUP);
+    if(ps.executeUpdate() > 0){
+        System.out.println("Alumno dado de alta!!!!");
+    }
+    }catch(java.sql.SQLException error){
+        JOptionPane.showMessageDialog(null, error.getMessage());
+    }
+}
 
 
 }
