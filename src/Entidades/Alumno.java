@@ -12,8 +12,7 @@ public class Alumno {
     private LocalDate fechaNacimiento;
     private boolean estado;
  
-    public Alumno(int id, int dni, String nombre, String apellido,LocalDate fechaNacimiento, boolean estado){
-    this.id = id;
+    public Alumno(int dni, String nombre, String apellido,LocalDate fechaNacimiento, boolean estado){
     this.dni = dni;
     this.nombre = nombre;
     this.apellido = apellido;

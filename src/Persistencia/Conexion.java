@@ -1,35 +1,34 @@
 package Persistencia;
-import javax.swing.JOptionPane;
 
-import java.sql.DriverManager;
 import java.sql.Connection;
-
+import java.sql.DriverManager;
 public class Conexion {
     
-private static Connection conexion = null;
-   
+    private String url;
+    private String user;
+    private String psw;
     
-private Conexion(){
-     
-}
-public static Connection getConexion(){
-    Connection con = null;
-    if(conexion == null){
-    try{
+    private static Connection conexion = null;
+    
+    public Conexion(String url, String user, String psw){
+        this.url = url;
+        this.user = user;
+        this.psw = psw;
         
-    Class.forName("org.mariadb.jdbc.Driver");
-    Connection conexion = DriverManager.getConnection("jdcb:mariadb://localhost:3306/gp18universidad", "root", "");
-    
-    }catch(java.sql.SQLException error){
-    JOptionPane.showMessageDialog(null, "Erro de conexion"+ error.getMessage());
-    }catch(java.lang.ClassNotFoundException error){
-    JOptionPane.showMessageDialog(null, "Clase no encontrada "+ error.getMessage());
-    
     }
-    
+    public Connection buscarConexion(){
+    if(conexion == null){// si conexion no esta establecida 
+        try{
+        Class.forName("org.mariadb.jdbc.Driver");
+        conexion = DriverManager.getConnection(url, user, psw);
+        
+        }catch(java.lang.ClassNotFoundException error){
+            System.out.println("Clase no encontrada"+ error.getMessage());
+        }catch(java.sql.SQLException error){
+            System.out.println("Error de conexion"+ error.getMessage());
+        }  
     }
-    
     return conexion;
-}
+    }
     
 }
