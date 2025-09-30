@@ -37,7 +37,7 @@ public void cargarAlumno(Alumno a){
         a.setId(rs.getInt(1));
         }
         ps.close();//cerramos el statement
-        con.close();//cerramos la conexion
+        //con.close();//cerramos la conexion
         
     } catch (java.sql.SQLException error) {
         JOptionPane.showMessageDialog(null, error.getMessage());
