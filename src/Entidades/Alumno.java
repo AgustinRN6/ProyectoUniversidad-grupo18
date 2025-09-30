@@ -19,7 +19,9 @@ public class Alumno {
     this.fechaNacimiento = fechaNacimiento;
     this.estado = estado;
     }
-
+    public Alumno(){
+    
+    }
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -95,6 +97,6 @@ public class Alumno {
     }
     
     public String mostrarInfo(){
-        return"["+"ID: "+id+" DNI: "+ dni +" Nombre: "+ nombre+" Apellido: "+ apellido +" Estado: " + estado;
+        return'['+"ID: "+id+" ,DNI: "+ dni +" ,Nombre: "+ nombre+" ,Apellido: "+ apellido +" ,Estado: " + estado+']';
     }  
 }

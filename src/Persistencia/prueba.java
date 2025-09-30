@@ -19,19 +19,33 @@ public class prueba {
   Conexion conexion = new Conexion("jdbc:mariadb://localhost/gp18universidad","root","");
   //creamos alumnosdata junto con la conexion a la bd
   AlumnosData alumnos = new AlumnosData(conexion);
-  //alumnos.cargarAlumnos(INSERT)................................
-  /*
-  alumnos.cargarAlumno(a1);
-  alumnos.cargarAlumno(a2);
-  alumnos.cargarAlumno(a3);
-  alumnos.cargarAlumno(a4);
-  alumnos.cargarAlumno(a5);
+    /*  
+   alumnos.cargarAlumnos(INSERT)................................
+    alumnos.cargarAlumno(a1);
+    alumnos.cargarAlumno(a2);
+    alumnos.cargarAlumno(a3);
+    alumnos.cargarAlumno(a4);
+    alumnos.cargarAlumno(a5);
+  
+  
+  alumno.darDeBaja alumno.darDeAlta(UPDATE)................................
+    alumnos.darDeBaja(0000001);
+    alumnos.darDeAlta(0000001);
+  
+  alumno.borrarAlumno(DELETE)................................
+   alumnos.borrarAlumno(0000001);
+  
   */
-  //alumno.buscar(SELECT)................................
-  alumnos.buscarAlumno(2);
-  //alumno.dardebaja(UPDATE)................................
-  alumnos.darDeBaja(0000001);
-  alumnos.darDeAlta(0000001);
+    //alumno.buscar(SELECT)................................
+    alumnos.buscarAlumno(2);
+  
+    //metodo que retorna una lista de todos los alumnos(SELECT *)................................
+        System.out.println("Alumnos");
+    for(Alumno a : alumnos.mostrarAlumnos()){
+            System.out.println(a.mostrarInfo());
+    }
+        System.out.println(".....................................................................................");
+        
   }
    
 }

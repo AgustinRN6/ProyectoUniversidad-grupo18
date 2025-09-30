@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Date;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -80,6 +82,7 @@ public void darDeBaja(int dni){
         JOptionPane.showMessageDialog(null, error.getMessage());
     }
 }
+
 public void darDeAlta(int dni){
     String sqlUP="UPDATE alumno SET estado='1' WHERE alumno.dni ='"+dni+"';";
     try{
@@ -92,6 +95,42 @@ public void darDeAlta(int dni){
     }
 }
 
+public void borrarAlumno(int dni){
+    String sqlDL="DELETE FROM alumno WHERE alumno.dni='"+dni+"';";
+    try{
+        PreparedStatement ps = con.prepareStatement(sqlDL);
+        if(ps.executeUpdate()> 0){
+            System.out.println("Alumno borrado");
+        }
+    }catch(java.sql.SQLException error){
+        JOptionPane.showMessageDialog(null, error.getMessage());
+    }
+}
+
+public List<Alumno> mostrarAlumnos(){
+    String sqlSL="SELECT * FROM alumno";
+    List<Alumno> alumnos = new ArrayList<>(); 
+    try{
+    PreparedStatement ps = con.prepareStatement(sqlSL);
+    ResultSet al = ps.executeQuery();
+    while(al.next()){
+    Alumno a = new Alumno();
+    a.setId(al.getInt("id_alumno"));
+    a.setDni(al.getInt("dni"));
+    a.setNombre(al.getString("nombre"));
+    a.setApellido(al.getString("apellido"));
+    //parseamos de Date a String para que luego LocalDate lo parsee devuelta
+    String fecha= String.valueOf(al.getDate("fechaNacimiento"));
+    a.setFechaNacimiento(LocalDate.parse(fecha));
+    a.setEstado(al.getBoolean("estado"));
+    
+    alumnos.add(a);
+    }
+    }catch(java.sql.SQLException error){
+        System.out.println(error.getMessage());
+    }
+    return alumnos;
+}
 
 }
 
