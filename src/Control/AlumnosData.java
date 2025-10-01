@@ -31,7 +31,7 @@ public class AlumnosData {
             ps.setString(2, a.getNombre());
             ps.setString(3, a.getApellido());
             ps.setDate(4, Date.valueOf(a.getFechaNacimiento()));
-            ps.setBoolean(5, true);
+            ps.setBoolean(5, a.isEstado());
 
             if (ps.executeUpdate() > 0) {//devuelve un entero con el numero de filas afectadas
                 System.out.println("Alumno agregado");
