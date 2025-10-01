@@ -1,5 +1,5 @@
 
-package Persistencia;
+package Control;
 import Entidades.Alumno;
 import java.sql.Connection;
 import java.time.LocalDate;
