@@ -12,14 +12,9 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-public class AlumnosData{
-private Connection con=null;
+public class AlumnosData {
 
-public AlumnosData(Conexion conexion){
-    //establecemos conexion con la base de datos mediante el metodo .buscarConexion()
-    this.con = conexion.buscarConexion();
-                                     
-}
+    private Connection con = null;
 
 public void cargarAlumno(Alumno a){
     try {
@@ -49,88 +44,120 @@ public void cargarAlumno(Alumno a){
     }  
 }
 
-public void buscarAlumno(int id){
-    //sentencia sql
-    String sqlSL="SELECT * FROM alumno WHERE dni ="+id+";";
-    try{
-    PreparedStatement ps = con.prepareStatement(sqlSL);
-    ResultSet rs = ps.executeQuery();//nos devuelve el resultado de la consulta de tipo Result Set
-    while(rs.next()){
-        System.out.println("Alumno: ");
-        System.out.println("Dni: "+ rs.getString("dni"));
-        System.out.println("Nombre: "+ rs.getString("nombre"));
-        System.out.println("Apellido: "+ rs.getString("apellido"));
-        System.out.println("Fecha De Naciemiento: "+ rs.getDate("fechaNacimiento"));
-        System.out.println("Estado: "+ rs.getBoolean("estado"));
-    }
-    }catch(java.sql.SQLException error){
-       JOptionPane.showMessageDialog(null, error.getMessage());
-    }
-    
-}
+    public AlumnosData(Conexion conexion) {
+        //establecemos conexion con la base de datos mediante el metodo .buscarConexion()
+        this.con = conexion.buscarConexion();
 
-public void darDeBaja(int dni){
+    }
 
-    String sqlUP="UPDATE alumno SET estado='0' WHERE alumno.dni =' "+dni+" ';";
-    try{
-    PreparedStatement ps = con.prepareStatement(sqlUP);
-    if(ps.executeUpdate()> 0){
-        System.out.println("Alumno dado de baja!!!");
-    }
-    
-    }catch(java.sql.SQLException error){
-        JOptionPane.showMessageDialog(null, error.getMessage());
-    }
-}
 
-public void darDeAlta(int dni){
-    String sqlUP="UPDATE alumno SET estado='1' WHERE alumno.dni ='"+dni+"';";
-    try{
-    PreparedStatement ps= con.prepareStatement(sqlUP);
-    if(ps.executeUpdate() > 0){
-        System.out.println("Alumno dado de alta!!!!");
-    }
-    }catch(java.sql.SQLException error){
-        JOptionPane.showMessageDialog(null, error.getMessage());
-    }
-}
-
-public void borrarAlumno(int dni){
-    String sqlDL="DELETE FROM alumno WHERE alumno.dni='"+dni+"';";
-    try{
-        PreparedStatement ps = con.prepareStatement(sqlDL);
-        if(ps.executeUpdate()> 0){
-            System.out.println("Alumno borrado");
+    public void buscarAlumno(int id) {
+        //sentencia sql
+        String sqlSL = "SELECT * FROM alumno WHERE dni =" + id + ";";
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlSL);
+            ResultSet rs = ps.executeQuery();//nos devuelve el resultado de la consulta de tipo Result Set
+            while (rs.next()) {
+                System.out.println("Alumno: ");
+                System.out.println("Dni: " + rs.getString("dni"));
+                System.out.println("Nombre: " + rs.getString("nombre"));
+                System.out.println("Apellido: " + rs.getString("apellido"));
+                System.out.println("Fecha De Naciemiento: " + rs.getDate("fechaNacimiento"));
+                System.out.println("Estado: " + rs.getBoolean("estado"));
+            }
+        } catch (java.sql.SQLException error) {
+            JOptionPane.showMessageDialog(null, error.getMessage());
         }
-    }catch(java.sql.SQLException error){
-        JOptionPane.showMessageDialog(null, error.getMessage());
-    }
-}
 
-public List<Alumno> mostrarAlumnos(){
-    String sqlSL="SELECT * FROM alumno";
-    List<Alumno> alumnos = new ArrayList<>(); 
-    try{
-    PreparedStatement ps = con.prepareStatement(sqlSL);
-    ResultSet al = ps.executeQuery();
-    while(al.next()){
-    Alumno a = new Alumno();
-    a.setId(al.getInt("id_alumno"));
-    a.setDni(al.getInt("dni"));
-    a.setNombre(al.getString("nombre"));
-    a.setApellido(al.getString("apellido"));
-    //parseamos de Date a String para que luego LocalDate lo parsee devuelta
-    String fecha= String.valueOf(al.getDate("fechaNacimiento"));
-    a.setFechaNacimiento(LocalDate.parse(fecha));
-    a.setEstado(al.getBoolean("estado"));
+    }
+
+    public void darDeBaja(int dni) {
+
+        String sqlUP = "UPDATE alumno SET estado='0' WHERE alumno.dni =' " + dni + " ';";
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlUP);
+            if (ps.executeUpdate() > 0) {
+                System.out.println("Alumno dado de baja!!!");
+            }
+
+        } catch (java.sql.SQLException error) {
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+    }
+
+    public void darDeAlta(int dni) {
+        String sqlUP = "UPDATE alumno SET estado='1' WHERE alumno.dni ='" + dni + "';";
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlUP);
+            if (ps.executeUpdate() > 0) {
+                System.out.println("Alumno dado de alta!!!!");
+            }
+        } catch (java.sql.SQLException error) {
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+    }
+
+    public void borrarAlumno(int dni) {
+        String sqlDL = "DELETE FROM alumno WHERE alumno.dni='" + dni + "';";
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlDL);
+            if (ps.executeUpdate() > 0) {
+                System.out.println("Alumno borrado");
+            }
+        } catch (java.sql.SQLException error) {
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+    }
+
+    public List<Alumno> mostrarAlumnos() {
+        String sqlSL = "SELECT * FROM alumno";
+        List<Alumno> alumnos = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sqlSL);
+            ResultSet al = ps.executeQuery();
+            while (al.next()) {
+                Alumno a = new Alumno();
+                a.setId(al.getInt("id_alumno"));
+                a.setDni(al.getInt("dni"));
+                a.setNombre(al.getString("nombre"));
+                a.setApellido(al.getString("apellido"));
+                //parseamos de Date a String para que luego LocalDate lo parsee devuelta
+                String fecha = String.valueOf(al.getDate("fechaNacimiento"));
+                a.setFechaNacimiento(LocalDate.parse(fecha));
+                a.setEstado(al.getBoolean("estado"));
+
+                alumnos.add(a);
+            }
+        } catch (java.sql.SQLException error) {
+            System.out.println(error.getMessage());
+        }
+        return alumnos;
+    }
     
-    alumnos.add(a);
+    public void actualizarAlumno(Alumno alumno) {
+        String query = "UPDATE alumno SET dni=?,nombre=?,apellido=?"
+                + ",fechaNacimiento=?,estado=? WHERE id_alumno = ?";
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, alumno.getDni());
+            ps.setString(2, alumno.getNombre());
+            ps.setString(3, alumno.getApellido());
+            ps.setDate(4, Date.valueOf(alumno.getFechaNacimiento()));
+            ps.setBoolean(5, alumno.isEstado());
+            ps.setInt(6, alumno.getId());
+            
+            int subido = ps.executeUpdate();
+            if (subido > 0) {
+                System.out.println("Alumno actualizado con exito");
+            }
+        
+        }catch (java.sql.SQLException error) {
+            
+            System.out.println("Error en actualizacion de alumno: " + error.getMessage());
+        }
+            
+        
     }
-    }catch(java.sql.SQLException error){
-        System.out.println(error.getMessage());
-    }
-    return alumnos;
-}
 
 }
-
