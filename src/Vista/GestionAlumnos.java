@@ -84,7 +84,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jbInsertar.setBackground(new java.awt.Color(0, 255, 102));
         jbInsertar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jbInsertar.setForeground(new java.awt.Color(0, 0, 0));
         jbInsertar.setText("INSERTAR");
         jbInsertar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +93,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jbActualizar.setBackground(new java.awt.Color(0, 204, 204));
         jbActualizar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jbActualizar.setForeground(new java.awt.Color(0, 0, 0));
         jbActualizar.setText("ACTUALIZAR");
         jbActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +102,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jbBorrar.setBackground(new java.awt.Color(255, 51, 51));
         jbBorrar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jbBorrar.setForeground(new java.awt.Color(0, 0, 0));
         jbBorrar.setText("BORRAR");
         jbBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +111,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jbAltaLogica.setBackground(new java.awt.Color(153, 255, 51));
         jbAltaLogica.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jbAltaLogica.setForeground(new java.awt.Color(0, 0, 0));
         jbAltaLogica.setText("ALTA LÓGICA");
         jbAltaLogica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +120,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jbBajaLogica.setBackground(new java.awt.Color(255, 204, 0));
         jbBajaLogica.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jbBajaLogica.setForeground(new java.awt.Color(0, 0, 0));
         jbBajaLogica.setText("BAJA LÓGICA");
         jbBajaLogica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,12 +188,10 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         jspTabla.setViewportView(jtTabla);
 
         lTodosLosAlumnos.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        lTodosLosAlumnos.setForeground(new java.awt.Color(0, 0, 0));
         lTodosLosAlumnos.setText("Todos los alumnos");
 
         jbActualizarTabla.setBackground(new java.awt.Color(0, 204, 204));
         jbActualizarTabla.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jbActualizarTabla.setForeground(new java.awt.Color(0, 0, 0));
         jbActualizarTabla.setText("ACTUALIZAR TABLA");
         jbActualizarTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,7 +243,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         );
 
         lbGestionAlumnos.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        lbGestionAlumnos.setForeground(new java.awt.Color(0, 0, 0));
         lbGestionAlumnos.setText("GESTION DE ALUMNOS");
 
         jpAlumnos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -294,7 +286,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jbNuevo.setBackground(new java.awt.Color(204, 204, 204));
         jbNuevo.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jbNuevo.setForeground(new java.awt.Color(0, 0, 0));
         jbNuevo.setText("NUEVO");
         jbNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,17 +320,15 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                         .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpAlumnosLayout.createSequentialGroup()
-                        .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jpAlumnosLayout.createSequentialGroup()
-                                .addComponent(jlFechaDeNacimiento)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jdcFechaDeNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jpAlumnosLayout.createSequentialGroup()
-                                .addComponent(jlApellido)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jpAlumnosLayout.createSequentialGroup()
+                            .addComponent(jlFechaDeNacimiento)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jdcFechaDeNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jpAlumnosLayout.createSequentialGroup()
+                            .addComponent(jlApellido)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jtfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jpAlumnosLayout.setVerticalGroup(
@@ -363,8 +352,8 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                             .addComponent(jlApellido))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jdcFechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlFechaDeNacimiento)))
+                            .addComponent(jlFechaDeNacimiento)
+                            .addComponent(jdcFechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jpAlumnosLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -374,7 +363,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                         .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlEstado)
                             .addComponent(jtbEstado))))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -402,7 +391,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                 .addComponent(jpAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpGestorBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
