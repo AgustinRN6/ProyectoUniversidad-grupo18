@@ -16,9 +16,9 @@ public class prueba {
   Alumno a5= new Alumno(0000001,"Prueba","Prueba",LocalDate.of(1992, 05, 03),true);
   Alumno a6= new Alumno(0000002,"cambiar","cambiar",LocalDate.of(1820, 12, 10),true);
   //Creamos la conexion.
-  Conexion conexion = new Conexion("jdbc:mariadb://localhost/gp18universidad","root","");
+ 
   //creamos alumnosdata junto con la conexion a la bd
-  AlumnosData alumnos = new AlumnosData(conexion);
+  AlumnosData alumnos = new AlumnosData();
   
   //alumnos.cargarAlumnos(INSERT)................................
   alumnos.cargarAlumno(a1);
