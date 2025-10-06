@@ -1,7 +1,11 @@
 
 package Vista;
 
+import Control.MateriasData;
 import Control.*;
+import Vista.GestionAlumnos;
+// import Vista.GestionInscripcion;
+import Vista.GestionMaterias;
 
 
 public class Gestion extends javax.swing.JFrame {
@@ -26,6 +30,10 @@ public class Gestion extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jmAlumno = new javax.swing.JMenu();
         jmiCargarAlumno = new javax.swing.JMenuItem();
+        jmMateria = new javax.swing.JMenu();
+        jmiGestionMateria = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jmiGestionInscripcion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +60,30 @@ public class Gestion extends javax.swing.JFrame {
 
         jMenuBar1.add(jmAlumno);
 
+        jmMateria.setText("Materia");
+
+        jmiGestionMateria.setText("Gestionar Materias");
+        jmiGestionMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiGestionMateriaActionPerformed(evt);
+            }
+        });
+        jmMateria.add(jmiGestionMateria);
+
+        jMenuBar1.add(jmMateria);
+
+        jMenu1.setText("Inscripcion");
+
+        jmiGestionInscripcion.setText("Gestion Inscripcion");
+        jmiGestionInscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiGestionInscripcionActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmiGestionInscripcion);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -74,6 +106,16 @@ public class Gestion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jmiGestionMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGestionMateriaActionPerformed
+        // TODO add your handling code here:
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        GestionMaterias gm = new GestionMaterias();
+        gm.setVisible(true);
+        jdpEscritorio.add(gm);
+        jdpEscritorio.moveToFront(gm);
+    }//GEN-LAST:event_jmiGestionMateriaActionPerformed
+
     private void jmiCargarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCargarAlumnoActionPerformed
         // TODO add your handling code here:
         jdpEscritorio.removeAll();
@@ -83,6 +125,17 @@ public class Gestion extends javax.swing.JFrame {
         jdpEscritorio.add(ga);
         jdpEscritorio.moveToFront(ga);
     }//GEN-LAST:event_jmiCargarAlumnoActionPerformed
+
+    private void jmiGestionInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGestionInscripcionActionPerformed
+        // TODO add your handling code here:
+                jdpEscritorio.removeAll();
+       /* jdpEscritorio.repaint();
+        GestionInscripcion gi = new GestionInscripcion();
+        gi.setVisible(true);
+        jdpEscritorio.add(gi);
+        jdpEscritorio.moveToFront(gi);
+                */
+    }//GEN-LAST:event_jmiGestionInscripcionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,10 +172,15 @@ public class Gestion extends javax.swing.JFrame {
             }
         });
     }
+    public static MateriasData materias = new MateriasData();
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JDesktopPane jdpEscritorio;
     private javax.swing.JMenu jmAlumno;
+    private javax.swing.JMenu jmMateria;
     private javax.swing.JMenuItem jmiCargarAlumno;
+    private javax.swing.JMenuItem jmiGestionInscripcion;
+    private javax.swing.JMenuItem jmiGestionMateria;
     // End of variables declaration//GEN-END:variables
 }
