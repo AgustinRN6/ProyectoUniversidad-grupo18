@@ -8,8 +8,6 @@ import Control.AlumnosData;
 import Entidades.Alumno;
 import java.awt.Color;
 import java.awt.Point;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -50,6 +48,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        GrupoFiltro = new javax.swing.ButtonGroup();
         jpGestorBotones = new javax.swing.JPanel();
         jbInsertar = new javax.swing.JButton();
         jbActualizar = new javax.swing.JButton();
@@ -63,6 +62,8 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         jbActualizarTabla = new javax.swing.JButton();
         jtfBuscar = new javax.swing.JTextField();
         jlBuscar = new javax.swing.JLabel();
+        jrbIDAlumno = new javax.swing.JRadioButton();
+        jrbDNI = new javax.swing.JRadioButton();
         lbGestionAlumnos = new javax.swing.JLabel();
         jpAlumnos = new javax.swing.JPanel();
         jlNombre = new javax.swing.JLabel();
@@ -73,17 +74,18 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         jtfDNI = new javax.swing.JTextField();
         jlFechaDeNacimiento = new javax.swing.JLabel();
         jlEstado = new javax.swing.JLabel();
-        jtbEstado = new javax.swing.JToggleButton();
         jlIDAlumno = new javax.swing.JLabel();
         jtfIDAlumno = new javax.swing.JTextField();
         jlInsertarAlumno = new javax.swing.JLabel();
         jbNuevo = new javax.swing.JButton();
         jdcFechaDeNacimiento = new com.toedter.calendar.JDateChooser();
+        jtfEstado = new javax.swing.JTextField();
 
         jpGestorBotones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jbInsertar.setBackground(new java.awt.Color(0, 255, 102));
         jbInsertar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jbInsertar.setForeground(new java.awt.Color(0, 0, 0));
         jbInsertar.setText("INSERTAR");
         jbInsertar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +95,9 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jbActualizar.setBackground(new java.awt.Color(0, 204, 204));
         jbActualizar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jbActualizar.setForeground(new java.awt.Color(0, 0, 0));
         jbActualizar.setText("ACTUALIZAR");
+        jbActualizar.setEnabled(false);
         jbActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbActualizarActionPerformed(evt);
@@ -102,7 +106,9 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jbBorrar.setBackground(new java.awt.Color(255, 51, 51));
         jbBorrar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jbBorrar.setForeground(new java.awt.Color(0, 0, 0));
         jbBorrar.setText("BORRAR");
+        jbBorrar.setEnabled(false);
         jbBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBorrarActionPerformed(evt);
@@ -111,7 +117,9 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jbAltaLogica.setBackground(new java.awt.Color(153, 255, 51));
         jbAltaLogica.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jbAltaLogica.setForeground(new java.awt.Color(0, 0, 0));
         jbAltaLogica.setText("ALTA LÓGICA");
+        jbAltaLogica.setEnabled(false);
         jbAltaLogica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAltaLogicaActionPerformed(evt);
@@ -120,7 +128,9 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jbBajaLogica.setBackground(new java.awt.Color(255, 204, 0));
         jbBajaLogica.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jbBajaLogica.setForeground(new java.awt.Color(0, 0, 0));
         jbBajaLogica.setText("BAJA LÓGICA");
+        jbBajaLogica.setEnabled(false);
         jbBajaLogica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBajaLogicaActionPerformed(evt);
@@ -188,10 +198,12 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         jspTabla.setViewportView(jtTabla);
 
         lTodosLosAlumnos.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
+        lTodosLosAlumnos.setForeground(new java.awt.Color(0, 0, 0));
         lTodosLosAlumnos.setText("Todos los alumnos");
 
         jbActualizarTabla.setBackground(new java.awt.Color(0, 204, 204));
         jbActualizarTabla.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jbActualizarTabla.setForeground(new java.awt.Color(0, 0, 0));
         jbActualizarTabla.setText("ACTUALIZAR TABLA");
         jbActualizarTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,7 +218,23 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         });
 
         jlBuscar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jlBuscar.setText("Buscar");
+        jlBuscar.setText("Buscar por:");
+
+        GrupoFiltro.add(jrbIDAlumno);
+        jrbIDAlumno.setText("ID Alumno");
+        jrbIDAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbIDAlumnoActionPerformed(evt);
+            }
+        });
+
+        GrupoFiltro.add(jrbDNI);
+        jrbDNI.setText("DNI");
+        jrbDNI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbDNIActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpMostrarLayout = new javax.swing.GroupLayout(jpMostrar);
         jpMostrar.setLayout(jpMostrarLayout);
@@ -221,10 +249,16 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                         .addGroup(jpMostrarLayout.createSequentialGroup()
                             .addComponent(jbActualizarTabla)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jpMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jlBuscar)
-                                .addComponent(jtfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jtfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(25, 25, 25))
+            .addGroup(jpMostrarLayout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addComponent(jlBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jrbIDAlumno)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jrbDNI)
+                .addContainerGap())
         );
         jpMostrarLayout.setVerticalGroup(
             jpMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +268,10 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jspTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jlBuscar)
+                .addGroup(jpMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlBuscar)
+                    .addComponent(jrbIDAlumno)
+                    .addComponent(jrbDNI))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbActualizarTabla)
@@ -243,6 +280,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         );
 
         lbGestionAlumnos.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        lbGestionAlumnos.setForeground(new java.awt.Color(0, 0, 0));
         lbGestionAlumnos.setText("GESTION DE ALUMNOS");
 
         jpAlumnos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -262,20 +300,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         jlEstado.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jlEstado.setText("Estado:");
 
-        jtbEstado.setBackground(java.awt.Color.green);
-        jtbEstado.setSelected(true);
-        jtbEstado.setText("Activo");
-        jtbEstado.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jtbEstadoStateChanged(evt);
-            }
-        });
-        jtbEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtbEstadoActionPerformed(evt);
-            }
-        });
-
         jlIDAlumno.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jlIDAlumno.setText("ID Alumno:");
 
@@ -286,12 +310,20 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
         jbNuevo.setBackground(new java.awt.Color(204, 204, 204));
         jbNuevo.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jbNuevo.setForeground(new java.awt.Color(0, 0, 0));
         jbNuevo.setText("NUEVO");
         jbNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbNuevoActionPerformed(evt);
             }
         });
+
+        jtfEstado.setEditable(false);
+        jtfEstado.setBackground(java.awt.Color.green);
+        jtfEstado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jtfEstado.setText("Activo");
+        jtfEstado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtfEstado.setEnabled(false);
 
         javax.swing.GroupLayout jpAlumnosLayout = new javax.swing.GroupLayout(jpAlumnos);
         jpAlumnos.setLayout(jpAlumnosLayout);
@@ -308,27 +340,31 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                         .addComponent(jlIDAlumno)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtfIDAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAlumnosLayout.createSequentialGroup()
-                        .addComponent(jlNombre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfNombre)
-                        .addGap(18, 18, 18)
-                        .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jlEstado)
-                            .addComponent(jlDNI))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jpAlumnosLayout.createSequentialGroup()
                         .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jpAlumnosLayout.createSequentialGroup()
-                            .addComponent(jlFechaDeNacimiento)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jdcFechaDeNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jpAlumnosLayout.createSequentialGroup()
-                            .addComponent(jlApellido)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jpAlumnosLayout.createSequentialGroup()
+                                .addComponent(jlNombre)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfNombre)
+                                .addGap(18, 18, 18)
+                                .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jlEstado)
+                                    .addComponent(jlDNI)))
+                            .addGroup(jpAlumnosLayout.createSequentialGroup()
+                                .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jpAlumnosLayout.createSequentialGroup()
+                                        .addComponent(jlFechaDeNacimiento)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jdcFechaDeNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jpAlumnosLayout.createSequentialGroup()
+                                        .addComponent(jlApellido)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jtfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(73, 73, 73)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtfDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(jtfEstado))))
                 .addContainerGap())
         );
         jpAlumnosLayout.setVerticalGroup(
@@ -352,18 +388,18 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                             .addComponent(jlApellido))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlFechaDeNacimiento)
-                            .addComponent(jdcFechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jdcFechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlFechaDeNacimiento)))
                     .addGroup(jpAlumnosLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlDNI))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jpAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jlEstado)
-                            .addComponent(jtbEstado))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jtfEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -391,7 +427,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                 .addComponent(jpAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpGestorBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -408,7 +444,8 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         if (a != null) {
             JOptionPane.showMessageDialog(null, "Se ha dado de baja al alumno con éxito");
             alumnos.darDeBaja(a.getDni());
-        } else {
+            estadoAlumno();
+        }else {
             JOptionPane.showMessageDialog(null, "No se puede dar de baja un alumno que ha sido eliminado");
         }
     }//GEN-LAST:event_jbBajaLogicaActionPerformed
@@ -423,31 +460,17 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         jtfApellido.setText("");
         jtfDNI.setText("");
         jtfIDAlumno.setText("");
-        jtbEstado.setSelected(true);
+        jtfEstado.setEnabled(false);
         jdcFechaDeNacimiento.setDate(null);
         //Se habilita la posibilidad de Insertar Alumnos a la base de datos
         jbInsertar.setEnabled(true);
-        //Se inhabilita la posibilidad de Actualizar Alumnos a la base de datos
+        //Se inhabilita la posibilidad de Actualizar, alta, baja o eliminar Alumnos a la base de datos
         jbActualizar.setEnabled(false);        
-        //Se habilita la posiblidad de cambiar de estado lógico
-        //botonEstado(true);
+        jbAltaLogica.setEnabled(false);  
+        jbBajaLogica.setEnabled(false);
+        jbBorrar.setEnabled(false);
 
     }//GEN-LAST:event_jbNuevoActionPerformed
-
-    private void jtbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbEstadoActionPerformed
-
-    }//GEN-LAST:event_jtbEstadoActionPerformed
-
-    private void jtbEstadoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jtbEstadoStateChanged
-        //Cambiar estado en Activo o Inactivo
-        if (jtbEstado.isSelected()) {
-            jtbEstado.setText("Activo");
-            jtbEstado.setBackground(Color.green);
-        } else {
-            jtbEstado.setText("Inactivo");
-            jtbEstado.setBackground(Color.red);
-        }
-    }//GEN-LAST:event_jtbEstadoStateChanged
 
     private void jtTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMouseClicked
         cargarInformacion(evt.getPoint());
@@ -521,13 +544,23 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         if (a != null) {
             JOptionPane.showMessageDialog(null, "Se ha dado de alta al alumno con éxito");
             alumnos.darDeAlta(a.getDni());
+            estadoAlumno();
         } else {
             JOptionPane.showMessageDialog(null, "No se puede dar de alta un alumno que ha sido eliminado");
         }
     }//GEN-LAST:event_jbAltaLogicaActionPerformed
 
+    private void jrbIDAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbIDAlumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrbIDAlumnoActionPerformed
+
+    private void jrbDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbDNIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jrbDNIActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup GrupoFiltro;
     private javax.swing.JButton jbActualizar;
     private javax.swing.JButton jbActualizarTabla;
     private javax.swing.JButton jbAltaLogica;
@@ -547,12 +580,14 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpAlumnos;
     private javax.swing.JPanel jpGestorBotones;
     private javax.swing.JPanel jpMostrar;
+    private javax.swing.JRadioButton jrbDNI;
+    private javax.swing.JRadioButton jrbIDAlumno;
     private javax.swing.JScrollPane jspTabla;
     private javax.swing.JTable jtTabla;
-    private javax.swing.JToggleButton jtbEstado;
     private javax.swing.JTextField jtfApellido;
     private javax.swing.JTextField jtfBuscar;
     private javax.swing.JTextField jtfDNI;
+    private javax.swing.JTextField jtfEstado;
     private javax.swing.JTextField jtfIDAlumno;
     private javax.swing.JTextField jtfNombre;
     private javax.swing.JLabel lTodosLosAlumnos;
@@ -623,7 +658,8 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
             jtfApellido.setText(alumnoSelec.getApellido());
             jtfIDAlumno.setText(String.valueOf(alumnoSelec.getId()));
             jtfDNI.setText(String.valueOf(alumnoSelec.getDni()));
-            jtbEstado.setSelected(alumnoSelec.isEstado());
+            //Si está activo el alumno se cambia a activo y color verde, caso contrario a inactivo color rojo
+            estadoAlumno();
             //Se realiza la conversión de LocalDate a Date
             Date fechaDate = Date.from(alumnoSelec.getFechaNacimiento().atStartOfDay(ZoneId.systemDefault()).toInstant());
             jdcFechaDeNacimiento.setDate(fechaDate);
@@ -631,8 +667,15 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
             //Se inhabilita la posibilidad de Insertar nuevo ALumno, debe colocarse la opción "Nuevo"
             jbInsertar.setEnabled(false);
             
-            //Se inhabilita la posiblidad de cambiar de estado lógico
-            //botonEstado(false);
+            //Se habilita la posibilidad de Actualizar, alta, baja o eliminar Alumnos a la base de datos
+            jbActualizar.setEnabled(true);
+            jbAltaLogica.setEnabled(true);
+            jbBajaLogica.setEnabled(true);
+            jbBorrar.setEnabled(true);
+            
+            //Se habilita el texto donde se visualiza el estado
+            jtfEstado.setEnabled(true);
+            
             
         } catch (NullPointerException e) {            
             JOptionPane.showMessageDialog(null, "No puede cargarse información de un alumno que no existe");            
@@ -643,9 +686,27 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         
     }
     
-    //Funcion que determina el estado del boton jtbEstado, si está presionado devuelve true, si no, false
+    //Funcion que determina si el alumno está activo o dado de baja
     private boolean estadoAlumno() {        
-        return jtbEstado.isSelected();     
+        
+        //Si se da el caso de que no capta nada (en caso de ser nuevo Alumno), brinda la excepción
+        try {
+            int ID = Integer.parseInt(jtfIDAlumno.getText());
+            if (alumnos.buscarAlumno(ID).isEstado()) {
+                jtfEstado.setText("Activo");
+                jtfEstado.setBackground(Color.green);
+                return true;
+
+            } else {
+                jtfEstado.setText("Inactivo");
+                jtfEstado.setBackground(Color.red);
+                return false;
+            }
+            
+        }catch(NumberFormatException e) {
+            return true;
+        } 
+        
     }
     
     //Se crea un string en base al estado del Alumno, para mostrarlo en la tabla
@@ -660,6 +721,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     
     //Se utilizará para insertar y actualizar alumnos, es una verificación por cada casillero
     private Alumno ingresarAlumno() {
+        
         try {
 
             //Se utilizará para que, al sumar cualquier error, no le permita Insertar a la BD el alumno
@@ -742,41 +804,82 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Debe atender a los errores previamente mencionados");
             }
 
-        } catch (NumberFormatException e) {
+       } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Debe colocar un formato válido, númerico, en DNI");
+            System.out.println(e.getMessage() + e.getStackTrace());
         }
         return null;
     }
     
-    /*El botón de estado al ser un toggle button puede seleccionarse o deseleccionarse, con esta funcion
-    * se hará posible mantener un estado sin inhabilitarlo, pero que tampoco pueda cambiarse,
-    * esto será útil cuando se necesita actualizar un Alumno, debido a que para actualizar su estado
-    * tenemos las funciones correspondientes de alta y baja lógica.
-    */
-    /*private void botonEstado(boolean activo) {
-        
-        if (activo) {
-            jtbEstado.addItemListener(new ItemListener() {
-                @Override
-                public void itemStateChanged(ItemEvent e) {
-                    //Al estar vacío, nos da la herramienta de cambiar de estado
-                    
-                }
-            });
+    
+    //Se utilizará para comparar dos valores numericos
+    private boolean compararValores(int busqueda, int buscado) {
+
+        String busquedaS = Integer.toString(busqueda);
+        String buscadoS = Integer.toString(buscado);
+        int contador = 0;
+        if (busqueda < 0) {
+            return true;
         } else {
-            boolean estadoLogico = estadoAlumno();
-            jtbEstado.addItemListener(new ItemListener() {
-                @Override
-                public void itemStateChanged(ItemEvent e) {
-                    //Toma el valor actual, no podrá modificarse al hacer click
-                    jtbEstado.setSelected(false);
+            try {
+
+                for (int i = 0; i < busquedaS.length(); i++) {
+
+                    if (buscadoS.charAt(i) == busquedaS.charAt(i)) {
+                        contador++;
+                    }
                 }
-            });
+
+                if (contador == busquedaS.length()) {
+
+                    return true;
+
+                } else {
+
+                    return false;
+
+                }
+
+            } catch (ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException e) {
+                return false;
+            }
+
+        }
+
+    }
+    
+    private boolean compararValores(String busqueda, String buscado) {
+
+        String busquedaS = busqueda;
+        String buscadoS = buscado;
+        int contador = 0;
+       
+        try {
+
+            for (int i = 0; i < busquedaS.length(); i++) {
+
+                if (buscadoS.charAt(i) == busquedaS.charAt(i)) {
+                    contador++;
+                }
+            }
+
+            if (contador == busquedaS.length()) {
+
+                return true;
+
+            } else {
+
+                return false;
+
+            }
+
+        } catch (ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException e) {
+            return false;
         }
 
         
-    }*/
 
-
-
+    }
+    
+    
 }
