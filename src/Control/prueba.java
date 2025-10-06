@@ -25,7 +25,7 @@ public class prueba {
   //creamos alumnosdata junto con la conexion a la bd
   AlumnosData alumnos = new AlumnosData();
   MateriasData materias = new MateriasData();
-  
+  /*
   //alumnos.cargarAlumnos(INSERT)................................
   alumnos.cargarAlumno(a1);
   alumnos.cargarAlumno(a2);
@@ -41,11 +41,10 @@ public class prueba {
   //alumno.borrarAlumno(DELETE)................................
   alumnos.borrarAlumno(0000001);
   
-  
   //alumnos.actualizarAlumno() (ACTUALIZAR)
   a6.setApellido("Ricardo");
   alumnos.actualizarAlumno(a6);
-  
+  */
   //alumno.buscar(SELECT)................................
   //alumnos.buscarAlumno(2);
   
