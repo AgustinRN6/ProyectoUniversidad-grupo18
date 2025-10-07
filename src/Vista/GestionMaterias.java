@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Control.MateriasData;
 import javax.swing.JOptionPane;
 import Entidades.Materia;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class GestionMaterias extends javax.swing.JInternalFrame {
+    public static MateriasData materias = new MateriasData();
     private boolean estado;//variable para el constructor materia
     private boolean estadoA;
     private DefaultTableModel modelo = new DefaultTableModel(){
@@ -23,6 +25,7 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
     public GestionMaterias() {
         initComponents();
         armarTabla();
+        cargarTabla();
     }
 
     /**
@@ -393,8 +396,8 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
             }else{
                 
             Materia m = new Materia(nombre, año, estadoA);
-            m.setId_materia(Integer.parseInt(txtID.getText()));//parseamos el valor id
-            Gestion.materias.actualizarMateria(m);
+            m.setId_materia(Integer.parseInt(txtID.getText()));//parseamos el valor id y le asignamos al object Materia
+            materias.actualizarMateria(m);
             }
             
         }catch(java.lang.NumberFormatException error){
@@ -426,7 +429,7 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
          try{
          int id = Integer.parseInt(txtID.getText());
-         Gestion.materias.darDeAlta(id);
+         materias.darDeAlta(id);
          cargarTabla();
         }catch(java.lang.NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "ERROR DE FORMATO");
@@ -438,7 +441,7 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
          try{
         int id = Integer.parseInt(txtID.getText());
-        Gestion.materias.darDeBaja(id);
+        materias.darDeBaja(id);
         cargarTabla();
         }catch(java.lang.NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "ERROR DE FORMATO");
@@ -457,7 +460,7 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
          try{
         int id = Integer.parseInt(txtID.getText());
-        Gestion.materias.borrarMateria(id);
+        materias.borrarMateria(id);
         cargarTabla();
         }catch(java.lang.NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "ERROR DE FORMATO");
@@ -520,7 +523,7 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
     
     private void cargarTabla(){
         borrarTabla();
-        for (Materia m : Gestion.materias.mostrarMaterias()){
+        for (Materia m : materias.mostrarMaterias()){
             modelo.addRow(new Object[]{m.getId_materia(), m.getNombre(), m.getAño(), m.isEstado()});
         }
         
@@ -536,7 +539,7 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
     int ind = modelo.getRowCount() -1 ;
     for (int i = ind; i >= 0; i--) {
      modelo.removeRow(i);
-    }
+        }
     }
     
     private void validarCampos(){
@@ -553,10 +556,11 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
                 //creamos la materia
                 Materia m = new Materia(nombre, año, estado);
                 //lo cargamos a la base de datos mediante el MateriasData Static de Gestion
-                Gestion.materias.cargarMateria(m);
+                materias.cargarMateria(m);
             } catch (java.lang.NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Ingrese el año en el formato correcto!!");
             }
         }
     }
+    
 }

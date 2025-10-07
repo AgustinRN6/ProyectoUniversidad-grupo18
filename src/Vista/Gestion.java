@@ -32,10 +32,13 @@ public class Gestion extends javax.swing.JFrame {
         jmiCargarAlumno = new javax.swing.JMenuItem();
         jmMateria = new javax.swing.JMenu();
         jmiGestionMateria = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        jmInscripcion = new javax.swing.JMenu();
         jmiGestionInscripcion = new javax.swing.JMenuItem();
+        jmNotas = new javax.swing.JMenu();
+        jmiCargarNotas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 700));
 
         javax.swing.GroupLayout jdpEscritorioLayout = new javax.swing.GroupLayout(jdpEscritorio);
         jdpEscritorio.setLayout(jdpEscritorioLayout);
@@ -72,7 +75,7 @@ public class Gestion extends javax.swing.JFrame {
 
         jMenuBar1.add(jmMateria);
 
-        jMenu1.setText("Inscripcion");
+        jmInscripcion.setText("Inscripcion");
 
         jmiGestionInscripcion.setText("Gestion Inscripcion");
         jmiGestionInscripcion.addActionListener(new java.awt.event.ActionListener() {
@@ -80,9 +83,21 @@ public class Gestion extends javax.swing.JFrame {
                 jmiGestionInscripcionActionPerformed(evt);
             }
         });
-        jMenu1.add(jmiGestionInscripcion);
+        jmInscripcion.add(jmiGestionInscripcion);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jmInscripcion);
+
+        jmNotas.setText("Notas");
+
+        jmiCargarNotas.setText("Cargar Notas");
+        jmiCargarNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCargarNotasActionPerformed(evt);
+            }
+        });
+        jmNotas.add(jmiCargarNotas);
+
+        jMenuBar1.add(jmNotas);
 
         setJMenuBar(jMenuBar1);
 
@@ -137,6 +152,17 @@ public class Gestion extends javax.swing.JFrame {
                 */
     }//GEN-LAST:event_jmiGestionInscripcionActionPerformed
 
+    private void jmiCargarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCargarNotasActionPerformed
+        // TODO add your handling code here:
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        GestionNotas n = new GestionNotas();
+        n.setVisible(true);
+        jdpEscritorio.add(n);
+        jdpEscritorio.moveToFront(n);
+       
+    }//GEN-LAST:event_jmiCargarNotasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -172,14 +198,16 @@ public class Gestion extends javax.swing.JFrame {
             }
         });
     }
-    public static MateriasData materias = new MateriasData();
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JDesktopPane jdpEscritorio;
     private javax.swing.JMenu jmAlumno;
+    private javax.swing.JMenu jmInscripcion;
     private javax.swing.JMenu jmMateria;
+    private javax.swing.JMenu jmNotas;
     private javax.swing.JMenuItem jmiCargarAlumno;
+    private javax.swing.JMenuItem jmiCargarNotas;
     private javax.swing.JMenuItem jmiGestionInscripcion;
     private javax.swing.JMenuItem jmiGestionMateria;
     // End of variables declaration//GEN-END:variables
