@@ -36,7 +36,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     public GestionAlumnos() {
         initComponents();
         columnaAlumnos();
-        cargarAlumnos();
+        cargarAlumnos(null,-1);
     }
 
     /**
@@ -64,6 +64,10 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         jlBuscar = new javax.swing.JLabel();
         jrbIDAlumno = new javax.swing.JRadioButton();
         jrbDNI = new javax.swing.JRadioButton();
+        jrbNombre = new javax.swing.JRadioButton();
+        jrbApellido = new javax.swing.JRadioButton();
+        jrbActivos = new javax.swing.JRadioButton();
+        jrbInactivos = new javax.swing.JRadioButton();
         lbGestionAlumnos = new javax.swing.JLabel();
         jpAlumnos = new javax.swing.JPanel();
         jlNombre = new javax.swing.JLabel();
@@ -211,9 +215,9 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
-        jtfBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfBuscarActionPerformed(evt);
+        jtfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfBuscarKeyReleased(evt);
             }
         });
 
@@ -236,6 +240,38 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
+        GrupoFiltro.add(jrbNombre);
+        jrbNombre.setText("Nombre");
+        jrbNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbNombreActionPerformed(evt);
+            }
+        });
+
+        GrupoFiltro.add(jrbApellido);
+        jrbApellido.setText("Apellido");
+        jrbApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbApellidoActionPerformed(evt);
+            }
+        });
+
+        GrupoFiltro.add(jrbActivos);
+        jrbActivos.setText("Activos");
+        jrbActivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbActivosActionPerformed(evt);
+            }
+        });
+
+        GrupoFiltro.add(jrbInactivos);
+        jrbInactivos.setText("Inactivos");
+        jrbInactivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbInactivosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpMostrarLayout = new javax.swing.GroupLayout(jpMostrar);
         jpMostrar.setLayout(jpMostrarLayout);
         jpMostrarLayout.setHorizontalGroup(
@@ -243,21 +279,27 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMostrarLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jpMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpMostrarLayout.createSequentialGroup()
+                        .addComponent(jlBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jrbIDAlumno)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrbNombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrbApellido)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrbDNI)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrbActivos))
                     .addComponent(lTodosLosAlumnos)
                     .addGroup(jpMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jspTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jpMostrarLayout.createSequentialGroup()
                             .addComponent(jbActualizarTabla)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jrbInactivos)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jtfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(25, 25, 25))
-            .addGroup(jpMostrarLayout.createSequentialGroup()
-                .addGap(202, 202, 202)
-                .addComponent(jlBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrbIDAlumno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrbDNI)
                 .addContainerGap())
         );
         jpMostrarLayout.setVerticalGroup(
@@ -271,11 +313,15 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
                 .addGroup(jpMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlBuscar)
                     .addComponent(jrbIDAlumno)
-                    .addComponent(jrbDNI))
+                    .addComponent(jrbNombre)
+                    .addComponent(jrbApellido)
+                    .addComponent(jrbDNI)
+                    .addComponent(jrbActivos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpMostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbActualizarTabla)
-                    .addComponent(jtfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jrbInactivos))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -450,10 +496,6 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbBajaLogicaActionPerformed
 
-    private void jtfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfBuscarActionPerformed
-
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         //Se limpia todos los atributos para insertar un nuevo Alumno
         jtfNombre.setText("");
@@ -487,7 +529,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
     private void jbActualizarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarTablaActionPerformed
         //Se encarga de actualizar la tabla
-        cargarAlumnos();
+        cargarAlumnos(null, -1);
     }//GEN-LAST:event_jbActualizarTablaActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
@@ -551,12 +593,82 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbAltaLogicaActionPerformed
 
     private void jrbIDAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbIDAlumnoActionPerformed
-        // TODO add your handling code here:
+        //Se realizará una búsqueda comparativa del cuadro cargado en pantalla según la opción que elija el usuario.
+        String filtroEscrito = jtfBuscar.getText();
+
+        if (!filtroEscrito.isEmpty()) { //Si está vacío (al borrar el texto o al no haber texto) debe tener la tabla completa
+
+            filtrarTabla(filtroEscrito);
+
+        } else {
+            cargarAlumnos(null, -1);
+        }
     }//GEN-LAST:event_jrbIDAlumnoActionPerformed
 
     private void jrbDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbDNIActionPerformed
-        // TODO add your handling code here:
+        //Se realizará una búsqueda comparativa del cuadro cargado en pantalla según la opción que elija el usuario.
+        String filtroEscrito = jtfBuscar.getText();
+
+        if (!filtroEscrito.isEmpty()) { //Si está vacío (al borrar el texto o al no haber texto) debe tener la tabla completa
+
+            filtrarTabla(filtroEscrito);
+
+        } else {
+            cargarAlumnos(null, -1);
+        }
     }//GEN-LAST:event_jrbDNIActionPerformed
+
+    private void jtfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfBuscarKeyReleased
+        //Se realizará una búsqueda comparativa del cuadro cargado en pantalla según la opción que elija el usuario.
+        String filtroEscrito = jtfBuscar.getText();
+        
+        if (!filtroEscrito.isEmpty()) { //Si está vacío (al borrar el texto o al no haber texto) debe tener la tabla completa
+            
+            filtrarTabla(filtroEscrito);
+            
+        } else {
+            cargarAlumnos(null,-1);
+        }
+    }//GEN-LAST:event_jtfBuscarKeyReleased
+
+    private void jrbNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbNombreActionPerformed
+        //Se realizará una búsqueda comparativa del cuadro cargado en pantalla según la opción que elija el usuario.
+        String filtroEscrito = jtfBuscar.getText();
+
+        if (!filtroEscrito.isEmpty()) { //Si está vacío (al borrar el texto o al no haber texto) debe tener la tabla completa
+
+            filtrarTabla(filtroEscrito);
+
+        } else {
+            cargarAlumnos(null, -1);
+        }
+    }//GEN-LAST:event_jrbNombreActionPerformed
+
+    private void jrbApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbApellidoActionPerformed
+        //Se realizará una búsqueda comparativa del cuadro cargado en pantalla según la opción que elija el usuario.
+        String filtroEscrito = jtfBuscar.getText();
+
+        if (!filtroEscrito.isEmpty()) { //Si está vacío (al borrar el texto o al no haber texto) debe tener la tabla completa
+
+            filtrarTabla(filtroEscrito);
+
+        } else {
+            cargarAlumnos(null, -1);
+        }
+    }//GEN-LAST:event_jrbApellidoActionPerformed
+
+    private void jrbActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbActivosActionPerformed
+        
+        //Si se selecciona Activos, se mostraran los Alumnos activos
+        int [] columnaNombre = ordenarColumnaNombre();        
+        cargarAlumnos(jrbActivos.getText(), columnaNombre[5]);
+    }//GEN-LAST:event_jrbActivosActionPerformed
+
+    private void jrbInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbInactivosActionPerformed
+        //Si se selecciona Activos, se mostraran los Alumnos activos
+        int[] columnaNombre = ordenarColumnaNombre();
+        cargarAlumnos(jrbInactivos.getText(), columnaNombre[5]);
+    }//GEN-LAST:event_jrbInactivosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -580,8 +692,12 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpAlumnos;
     private javax.swing.JPanel jpGestorBotones;
     private javax.swing.JPanel jpMostrar;
+    private javax.swing.JRadioButton jrbActivos;
+    private javax.swing.JRadioButton jrbApellido;
     private javax.swing.JRadioButton jrbDNI;
     private javax.swing.JRadioButton jrbIDAlumno;
+    private javax.swing.JRadioButton jrbInactivos;
+    private javax.swing.JRadioButton jrbNombre;
     private javax.swing.JScrollPane jspTabla;
     private javax.swing.JTable jtTabla;
     private javax.swing.JTextField jtfApellido;
@@ -605,14 +721,51 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         jtTabla.setModel(modeloTabla);
     }
     
-    //Se agregan todos los alumnos de la base de datos
-    private void cargarAlumnos() {
+    //Se agregan todos los alumnos de la base de datos, filtro es para filtrar segun lo colocado por usuario
+    private void cargarAlumnos(String filtro,int opcion) {
+        
         limpiarTabla();
+        int[] columna = ordenarColumnaNombre(); //Toma el orden de las columnas con sus respectivos nombres
+        
         Iterator<Alumno> iterar = alumnos.mostrarAlumnos().iterator();
         while (iterar.hasNext()) {
             Alumno a = iterar.next();
+            if (filtro == null && opcion == -1) {
+                modeloTabla.addRow(new Object[]{a.getId(), a.getNombre(), a.getApellido(),
+                a.getDni(), a.getFechaNacimiento(), estadoAlumnoParaTabla(a.isEstado())}); 
+            }
+            
+            if (columna[0] == opcion && compararValores(Integer.parseInt(filtro),a.getId())) { //Si la columna ID Alumno es igual al filtro
+                modeloTabla.addRow(new Object[]{a.getId(), a.getNombre(), a.getApellido(),
+                a.getDni(), a.getFechaNacimiento(), estadoAlumnoParaTabla(a.isEstado())});
+            }
+            
+            if (columna[1] == opcion && compararValores(filtro, a.getNombre())) { //Si la columna Nombre es igual al filtro
                 modeloTabla.addRow(new Object[]{a.getId(), a.getNombre(), a.getApellido(),
                     a.getDni(), a.getFechaNacimiento(), estadoAlumnoParaTabla(a.isEstado())});
+            }
+            
+            if (columna[2] == opcion && compararValores(filtro, a.getApellido())) { //Si la columna Apellido es igual al filtro
+                modeloTabla.addRow(new Object[]{a.getId(), a.getNombre(), a.getApellido(),
+                    a.getDni(), a.getFechaNacimiento(), estadoAlumnoParaTabla(a.isEstado())});
+            }
+            
+            if (columna[3] == opcion && compararValores(Integer.parseInt(filtro), a.getDni())) { //Si la columna ID Alumno es igual al filtro
+                modeloTabla.addRow(new Object[]{a.getId(), a.getNombre(), a.getApellido(),
+                    a.getDni(), a.getFechaNacimiento(), estadoAlumnoParaTabla(a.isEstado())});
+            }
+            
+            if (columna[5] == opcion && filtro.equalsIgnoreCase("Activos") && a.isEstado()) { //Si la columna estado es igual a true
+                modeloTabla.addRow(new Object[]{a.getId(), a.getNombre(), a.getApellido(),
+                    a.getDni(), a.getFechaNacimiento(), estadoAlumnoParaTabla(a.isEstado())});
+            }
+            
+            if (columna[5] == opcion && filtro.equalsIgnoreCase("Inactivos") && !a.isEstado()) { //Si la columna estado es igual a false
+                modeloTabla.addRow(new Object[]{a.getId(), a.getNombre(), a.getApellido(),
+                    a.getDni(), a.getFechaNacimiento(), estadoAlumnoParaTabla(a.isEstado())});
+            }
+            
+                
         }
     }
     
@@ -847,7 +1000,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
         }
 
     }
-    
+    //Se utilizará para comparar dos valores de texto
     private boolean compararValores(String busqueda, String buscado) {
 
         String busquedaS = busqueda;
@@ -858,7 +1011,7 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
             for (int i = 0; i < busquedaS.length(); i++) {
 
-                if (buscadoS.charAt(i) == busquedaS.charAt(i)) {
+                if (buscadoS.charAt(i) == busquedaS.charAt(i) || Character.toUpperCase(busquedaS.charAt(i)) == buscadoS.charAt(i)) {
                     contador++;
                 }
             }
@@ -877,8 +1030,86 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
             return false;
         }
 
+    }
+    
+    //Ordena los valores de cada una de las columnas con sus respectivos nombres, por ejemplo, el ID alumno debe ser 0, pero puede cambiar
+    private int[] ordenarColumnaNombre() {
+        
+        int[] columnas = new int[jtTabla.getColumnCount()]; //Se brindará la cantidad de columnas para determinar su orden
         
 
+        for (int i = 0; i < jtTabla.getColumnCount(); i++) {           
+            if (jtTabla.getColumnName(i).equals("ID alumno")) {
+                columnas[0] = i;
+            }
+            if (jtTabla.getColumnName(i).equals("Nombre")) {
+                columnas[1] = i;
+            }
+            if (jtTabla.getColumnName(i).equals("Apellido")) {
+                columnas[2] = i;
+            }
+            if (jtTabla.getColumnName(i).equals("DNI")) {
+                columnas[3] = i;
+            }
+            if (jtTabla.getColumnName(i).equals("Fecha de nacimiento")) {
+                columnas[4] = i;
+            }
+            if (jtTabla.getColumnName(i).equals("Estado")) {
+                columnas[5] = i;
+            }
+        }
+        
+        return columnas;
+        
+    }
+    
+    //Funcion que se utilizará para filtrar tabla según el dato elegido
+    private void filtrarTabla(String f) {
+        
+        String filtrado = f;
+        int[] columnaNombre = ordenarColumnaNombre(); //Se utilizará para determinar el nombre de la columna y su posicion en la tabla
+        System.out.println("Ingresa valor string " + f);
+        
+        try {
+            
+            if (jrbIDAlumno.isSelected()) { //Es la columna [0], recordar que puede cambiar el valor.  ID Alumno 
+                
+                int filtrarNum = Integer.parseInt(filtrado);
+
+                cargarAlumnos(filtrado, columnaNombre[0]);
+
+            }
+            
+            if (jrbNombre.isSelected()) { //Es la columna [1] , Nombre 
+
+                cargarAlumnos(filtrado, columnaNombre[1]);
+
+            }
+            
+            if (jrbApellido.isSelected()) { //Es la columna [2] , Apellido
+
+                cargarAlumnos(filtrado, columnaNombre[2]);
+
+            }
+            
+            if (jrbDNI.isSelected()) { //Es la columna [3], DNI 
+
+                int filtrarNum = Integer.parseInt(filtrado);
+
+                cargarAlumnos(filtrado, columnaNombre[3]);
+
+            }      
+            
+        } catch(NumberFormatException e) {
+            
+            JOptionPane.showMessageDialog(null, "Debe tener un valor numérico");
+            cargarAlumnos(null, -1); //Se carga la tabla nuevamente en caso de verificarse excepcion
+            
+        }
+        
+        
+        
+        
     }
     
     
