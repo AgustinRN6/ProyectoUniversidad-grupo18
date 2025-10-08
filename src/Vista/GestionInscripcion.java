@@ -7,6 +7,7 @@ import Control.MateriasData;
 import Entidades.Alumno;
 import Entidades.Inscripcion;
 import Entidades.Materia;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,20 +17,23 @@ import javax.swing.table.DefaultTableModel;
 
 public class GestionInscripcion extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel tablaMateria;
+    private DefaultTableModel tablaMateria = new DefaultTableModel();
 
     private List<Materia> listaMat;
     private List<Alumno> listaAlu;
 
     private InscripcionesData inscData;
     private MateriasData matData;
-    private AlumnosData alData;
+    private AlumnosData alData = new AlumnosData();
 
     /**
      * Creates new form GestionInscripcion
      */
     public GestionInscripcion() {
         initComponents();
+        columnaInscripciones();
+        cargarAlumnos();
+        
     }
 
     /**
@@ -41,6 +45,7 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupoMaterias = new javax.swing.ButtonGroup();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -253,13 +258,13 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
 
         jtMaterias1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane2.setViewportView(jtMaterias1);
@@ -268,6 +273,7 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
 
         jSeparator4.setForeground(new java.awt.Color(102, 102, 102));
 
+        grupoMaterias.add(jrMateriaInscripta1);
         jrMateriaInscripta1.setText("Materias Inscriptas");
         jrMateriaInscripta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,6 +281,7 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
             }
         });
 
+        grupoMaterias.add(jrMateriasNOinsc1);
         jrMateriasNOinsc1.setText("Materias NO inscriptas");
         jrMateriasNOinsc1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -371,6 +378,15 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Se agrega las columnas con sus nombres correspondientes a la tabla
+    private void columnaInscripciones() {
+        tablaMateria.addColumn("ID Materia");
+        tablaMateria.addColumn("Nombre");
+        tablaMateria.addColumn("Año");
+
+        jtMaterias1.setModel(tablaMateria);
+    }
+    
     private void borrarFilaTabla() {
         int indice = tablaMateria.getRowCount();
 
@@ -380,22 +396,48 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
     }
 
     private void cargarDatosNoInscriptas() {
-        borrarFilaTabla();
-        Alumno selec = (Alumno) jcAlumno.getSelectedItem();
-        listaMat = inscData.obtenerMateriasNOCursadas(selec.getId());
-        System.out.println("materia no inscrita" + listaMat);
-        for (Materia m : listaMat) {
-            tablaMateria.addRow(new Object[]{m.getId_materia(), m.getNombre(), m.getAño()});
+        
+        try {
+            borrarFilaTabla();
+            Alumno selec = (Alumno) jcAlumno.getSelectedItem();
+            listaMat = inscData.obtenerMateriasNOCursadas(selec.getId());
+            System.out.println("materia no inscrita" + listaMat);
+            for (Materia m : listaMat) {
+                tablaMateria.addRow(new Object[]{m.getId_materia(), m.getNombre(), m.getAño()});
+            }
+        } catch (NullPointerException e) {
+            
+            JOptionPane.showMessageDialog(null, "Tiene que elegir a un alumno");
+            
         }
+        
     }
 
     private void cargarDatosInscriptas() {
-        borrarFilaTabla();
-        Alumno selec = (Alumno) jcAlumno.getSelectedItem();
-        listaMat = inscData.obtenerMateriasCursadas(selec.getId());
-        System.out.println("materia inscrita" + listaMat);
-        for (Materia m : listaMat) {
-            tablaMateria.addRow(new Object[]{m.getId_materia(), m.getNombre(), m.getAño()});
+        
+        try {
+            borrarFilaTabla();
+            Alumno selec = (Alumno) jcAlumno.getSelectedItem();
+            listaMat = inscData.obtenerMateriasCursadas(selec.getId());
+            System.out.println("materia inscrita" + listaMat);
+            for (Materia m : listaMat) {
+                tablaMateria.addRow(new Object[]{m.getId_materia(), m.getNombre(), m.getAño()});
+            }
+        } catch (NullPointerException e) {
+
+            JOptionPane.showMessageDialog(null, "Tiene que elegir a un alumno");
+
+        }
+    }
+    
+    private void cargarAlumnos() {
+        Iterator<Alumno> iterar = alData.mostrarAlumnos().iterator();
+        while(iterar.hasNext()) {
+            
+            Alumno a = iterar.next();
+            System.out.println(a);
+            jcAlumno1.addItem(a);
+            
         }
     }
 
@@ -504,6 +546,7 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup grupoMaterias;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
