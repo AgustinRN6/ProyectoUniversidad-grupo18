@@ -99,28 +99,26 @@ public void borrarMateria(int id){
     }*/
 
 public Materia consultarMateria(int id){
-  String sql ="SELECT nombre, año, estado FROM materia WHERE idMateria = ?";
-        Materia materia = null;
-        
+    String sqlSL="SELECT * FROM materia WHERE materia.id_materia ='"+id+"';";
+    Materia m = new Materia();
+    
         try {
-            PreparedStatement ps = con.prepareStatement(sql);
+            
+            PreparedStatement ps = con.prepareStatement(sqlSL);
             ps.setInt(1, id);          
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                materia = new Materia();
-                materia.setId_materia(id);
-                materia.setNombre(rs.getString("nombre"));
-                materia.setAño(rs.getInt("año"));
-                materia.setEstado(true);
-            }else{
-                JOptionPane.showMessageDialog(null, "No existe una materia con ese ID");
+            while(rs.next()){
+                m.setId_materia(id);
+                m.setNombre(rs.getString("nombre"));
+                m.setAño(rs.getInt("año"));
+                m.setEstado(rs.getBoolean("estado"));
             }
             ps.close();
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia");
         }
-        return materia;
+        return m;
 
 }
 

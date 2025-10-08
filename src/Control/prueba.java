@@ -1,7 +1,6 @@
 
 package Control;
 import Entidades.*;
-import Control.*;
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.Month;
@@ -25,6 +24,7 @@ public class prueba {
   //creamos alumnosdata junto con la conexion a la bd
   AlumnosData alumnos = new AlumnosData();
   MateriasData materias = new MateriasData();
+  InscripcionesData inscripciones = new InscripcionesData();
   /*
   //alumnos.cargarAlumnos(INSERT)................................
   alumnos.cargarAlumno(a1);
@@ -37,6 +37,7 @@ public class prueba {
   //alumno.darDeBaja alumno.darDeAlta(UPDATE)................................
   alumnos.darDeBaja(0000001);
   alumnos.darDeAlta(0000001);
+  inscripciones.modificarNota(11, 7);
   
   //alumno.borrarAlumno(DELETE)................................
   alumnos.borrarAlumno(0000001);
@@ -44,7 +45,7 @@ public class prueba {
   //alumnos.actualizarAlumno() (ACTUALIZAR)
   a6.setApellido("Ricardo");
   alumnos.actualizarAlumno(a6);
-  */
+  
   //alumno.buscar(SELECT)................................
   //alumnos.buscarAlumno(2);
   
@@ -53,7 +54,11 @@ public class prueba {
   materias.cargarMateria(m2);
   materias.cargarMateria(m3);
   materias.cargarMateria(m4);
+  */
+  
   //metodo que retorna una lista de todos los alumnos(SELECT *)................................
+     
+  /*
     System.out.println("Alumnos");
   for(Alumno a : alumnos.mostrarAlumnos()){
         System.out.println(a.mostrarInfo());
@@ -66,15 +71,15 @@ public class prueba {
     }
    System.out.println(".....................................................................................");
    
-   /*
+   
    System.out.println("Inscripciones");
     for(Inscripcion i: inscripciones.mostrarInscripciones()){
-        System.out.println(i.getInscripcion());
+        System.out.println("");
     }
     
         System.out.println(".....................................................................................");
    */
-   
+    
   }
   
 

@@ -48,8 +48,8 @@ public class InscripcionesData {
                 Inscripcion i = new Inscripcion();
                 i.setId_inscripcion(rs.getInt("id_inscripcion"));
                 i.setNota(rs.getInt("nota"));
-                Alumno alu = ad.buscarAlumno(rs.getInt("idAlumno"));
-                Materia mat = md.consultarMateria(rs.getInt("idMateria"));
+                Alumno alu = ad.buscarAlumno(rs.getInt("id_alumno"));
+                Materia mat = md.consultarMateria(rs.getInt("id_materia"));
                 i.setAlumno(alu);
                 i.setMateria(mat);
                 inscripciones.add(i);
@@ -80,16 +80,16 @@ public class InscripcionesData {
 
     public List<Materia> obtenerMateriasCursadas(int idAlumno) {
         ArrayList<Materia> materias = new ArrayList<>();
-        String sql = "SELECT inscripcion.idMateria, nombre, año FROM inscripcion,"
-                + "materia WHERE inscripcion.idMateria = materia.idMateria "
-                + "AND inscripcion.idAlumno= ?;";
+        String sql = "SELECT inscripcion.id_materia, nombre, año FROM inscripcion,"
+                + "materia WHERE inscripcion.id_materia = materia.id_materia "
+                + "AND inscripcion.id_alumno= ?;";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Materia materia = new Materia();
-                materia.setId_materia(rs.getInt("idMateria"));
+                materia.setId_materia(rs.getInt("id_materia"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAño(rs.getInt("año"));
                 materias.add(materia);
@@ -124,6 +124,20 @@ public class InscripcionesData {
 
         }
         return materias;
+    }
+    
+    public void modificarNota(int id, int nota){
+    String sqlUP="UPDATE inscripcion  i SET nota =? WHERE i.id_inscripcion =?";
+    try{
+        PreparedStatement ps = con.prepareStatement(sqlUP);
+        ps.setInt(1, nota);
+        ps.setInt(2, id);
+        if(ps.executeUpdate() > 0){
+            JOptionPane.showMessageDialog(null, "Nota actualizada!!!!");
+        }
+    }catch(java.sql.SQLException error){
+        JOptionPane.showMessageDialog(null, error.getMessage());
+    }
     }
 
 }
