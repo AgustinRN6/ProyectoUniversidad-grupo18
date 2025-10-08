@@ -50,7 +50,7 @@ public class GestionNotas extends javax.swing.JInternalFrame {
 
         setRequestFocusEnabled(false);
 
-        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 102), 3, true));
+        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 3, true));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153), 2));
 
