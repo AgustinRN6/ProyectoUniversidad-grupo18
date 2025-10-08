@@ -143,13 +143,13 @@ public class Gestion extends javax.swing.JFrame {
 
     private void jmiGestionInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGestionInscripcionActionPerformed
         // TODO add your handling code here:
-                jdpEscritorio.removeAll();
-       /* jdpEscritorio.repaint();
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
         GestionInscripcion gi = new GestionInscripcion();
         gi.setVisible(true);
         jdpEscritorio.add(gi);
         jdpEscritorio.moveToFront(gi);
-                */
+                
     }//GEN-LAST:event_jmiGestionInscripcionActionPerformed
 
     private void jmiCargarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCargarNotasActionPerformed
