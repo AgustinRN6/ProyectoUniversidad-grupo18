@@ -404,6 +404,7 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, error.getMessage());
         }
         cargarTabla();
+        bgEstadosA.clearSelection();
     }//GEN-LAST:event_jbActualizarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -454,6 +455,7 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
         System.out.println(evt.getActionCommand());
         txtNombre.setText("");
         txtAño.setText("");
+        bgEstados.clearSelection();
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed

@@ -27,7 +27,7 @@ public class InscripcionesData {
             ps.setInt(2, i.getAlumno().getId());
             ps.setInt(3, i.getMateria().getId_materia());
             if (ps.executeUpdate() > 0) {
-                System.out.println("Inscripcion añadida");
+                JOptionPane.showMessageDialog(null, "Alumno Inscripto");
             }
             ResultSet rs = ps.getGeneratedKeys();
             while (rs.next()) {
@@ -62,7 +62,7 @@ public class InscripcionesData {
 
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
         try {
-            String sql = "DELETE FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
+            String sql = "DELETE FROM inscripcion WHERE id_alumno = ? AND id_materia = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ps.setInt(2, idMateria);
@@ -104,15 +104,15 @@ public class InscripcionesData {
 
     public List<Materia> obtenerMateriasNOCursadas(int idAlumno) {
         ArrayList<Materia> materias = new ArrayList<>();
-        String sql = "SELECT * FROM materia WHERE estado = 1 AND idMateria not in "
-                + "(SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
+        String sql = "SELECT * FROM materia WHERE estado = 1 AND id_materia not in "
+                + "(SELECT id_materia FROM inscripcion WHERE id_alumno = ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Materia materia = new Materia();
-                materia.setId_materia(rs.getInt("idMateria"));
+                materia.setId_materia(rs.getInt("id_materia"));
                 materia.setNombre(rs.getString("nombre"));
                 materia.setAño(rs.getInt("año"));
                 materias.add(materia);
