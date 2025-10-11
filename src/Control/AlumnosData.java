@@ -141,6 +141,7 @@ public List<Alumno> mostrarAlumnos(){
     }
     }catch(java.sql.SQLException error){
         System.out.println(error.getMessage());
+        JOptionPane.showMessageDialog(null, error.getMessage());
     }
     return alumnos;
 }

@@ -6,10 +6,15 @@ import Control.*;
 import Vista.GestionAlumnos;
 // import Vista.GestionInscripcion;
 import Vista.GestionMaterias;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JInternalFrame;
 
 
 public class Gestion extends javax.swing.JFrame {
     
+    private Connection con = null;
     /**
      * Creates new form Gestion
      */
@@ -36,6 +41,8 @@ public class Gestion extends javax.swing.JFrame {
         jmiGestionInscripcion = new javax.swing.JMenuItem();
         jmNotas = new javax.swing.JMenu();
         jmiCargarNotas = new javax.swing.JMenuItem();
+        jmSalir = new javax.swing.JMenu();
+        jmiSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 700));
@@ -99,6 +106,18 @@ public class Gestion extends javax.swing.JFrame {
 
         jMenuBar1.add(jmNotas);
 
+        jmSalir.setText("Salir");
+
+        jmiSalir.setText("Salir");
+        jmiSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiSalirActionPerformed(evt);
+            }
+        });
+        jmSalir.add(jmiSalir);
+
+        jMenuBar1.add(jmSalir);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,46 +141,60 @@ public class Gestion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiGestionMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGestionMateriaActionPerformed
-        // TODO add your handling code here:
-        jdpEscritorio.removeAll();
-        jdpEscritorio.repaint();
-        GestionMaterias gm = new GestionMaterias();
-        gm.setVisible(true);
-        jdpEscritorio.add(gm);
-        jdpEscritorio.moveToFront(gm);
+        
+        
+        //Primero intenta si permite conectarse a la base de datos
+        con = MiConexion.getConexion();
+
+        if (con != null) {
+            GestionMaterias gm = new GestionMaterias();
+            cargarVentana(gm);
+        }
     }//GEN-LAST:event_jmiGestionMateriaActionPerformed
 
     private void jmiCargarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCargarAlumnoActionPerformed
-        // TODO add your handling code here:
-        jdpEscritorio.removeAll();
-        jdpEscritorio.repaint();
-        GestionAlumnos ga = new GestionAlumnos();
-        ga.setVisible(true);
-        jdpEscritorio.add(ga);
-        jdpEscritorio.moveToFront(ga);
+        
+        //Primero intenta si permite conectarse a la base de datos
+        con = MiConexion.getConexion();
+
+        if (con != null) {
+            GestionAlumnos ga = new GestionAlumnos();
+            cargarVentana(ga);
+        } 
     }//GEN-LAST:event_jmiCargarAlumnoActionPerformed
 
     private void jmiGestionInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiGestionInscripcionActionPerformed
-        // TODO add your handling code here:
-        jdpEscritorio.removeAll();
-        jdpEscritorio.repaint();
-        GestionInscripcion gi = new GestionInscripcion();
-        gi.setVisible(true);
-        jdpEscritorio.add(gi);
-        jdpEscritorio.moveToFront(gi);
+        
+        //Primero intenta si permite conectarse a la base de datos
+        con = MiConexion.getConexion();
+
+        if (con != null) {
+            GestionInscripcion gi = new GestionInscripcion();
+            cargarVentana(gi);
+        }
                 
     }//GEN-LAST:event_jmiGestionInscripcionActionPerformed
 
     private void jmiCargarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCargarNotasActionPerformed
-        // TODO add your handling code here:
-        jdpEscritorio.removeAll();
-        jdpEscritorio.repaint();
-        GestionNotas n = new GestionNotas();
-        n.setVisible(true);
-        jdpEscritorio.add(n);
-        jdpEscritorio.moveToFront(n);
+        
+
+        //Primero intenta si permite conectarse a la base de datos
+        con = MiConexion.getConexion();
+
+        if (con != null) {
+            GestionNotas n = new GestionNotas();
+            cargarVentana(n);
+        }
        
     }//GEN-LAST:event_jmiCargarNotasActionPerformed
+
+    private void jmiSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSalirActionPerformed
+        int salir = JOptionPane.showConfirmDialog(null, "¿Estás seguro que deseas salir?", "Salir", JOptionPane.YES_NO_OPTION);
+        if (salir == 0) {
+            JOptionPane.showMessageDialog(null, "¡Gracias por utilizar nuestro servicio!");
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jmiSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,9 +239,26 @@ public class Gestion extends javax.swing.JFrame {
     private javax.swing.JMenu jmInscripcion;
     private javax.swing.JMenu jmMateria;
     private javax.swing.JMenu jmNotas;
+    private javax.swing.JMenu jmSalir;
     private javax.swing.JMenuItem jmiCargarAlumno;
     private javax.swing.JMenuItem jmiCargarNotas;
     private javax.swing.JMenuItem jmiGestionInscripcion;
     private javax.swing.JMenuItem jmiGestionMateria;
+    private javax.swing.JMenuItem jmiSalir;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarVentana(JInternalFrame ventana) {
+        
+        
+        
+            jdpEscritorio.removeAll();
+            jdpEscritorio.repaint();
+            ventana.setVisible(true);
+            jdpEscritorio.add(ventana);
+            jdpEscritorio.moveToFront(ventana);
+        
+        
+    }
+
+
 }

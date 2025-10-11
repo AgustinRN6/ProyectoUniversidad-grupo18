@@ -3,6 +3,7 @@ package Control;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import javax.swing.JOptionPane;
 
 public class MiConexion {
     private static Connection con = null;
@@ -24,6 +25,7 @@ public class MiConexion {
         
         }catch(java.sql.SQLException error){
             System.out.println(error.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos, active el servidor");
         }
         }
         return con;
