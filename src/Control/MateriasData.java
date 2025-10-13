@@ -78,7 +78,7 @@ public void borrarMateria(int id){
         }
         ps.close();
     }catch(java.sql.SQLException error){
-       JOptionPane.showMessageDialog(null, error.getMessage());
+       JOptionPane.showMessageDialog(null, "No puede eliminar la materia, ya que esta en el registro inscripcion");
     }
 }
 

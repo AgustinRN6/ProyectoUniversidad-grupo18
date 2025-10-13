@@ -14,6 +14,7 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
     private boolean estado;//variable para el constructor materia
     private boolean estadoA;
     private DefaultTableModel modelo = new DefaultTableModel(){
+    @Override
     public boolean isCellEditable(int fila, int columna){ 
         return false;
     }
@@ -49,25 +50,18 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
         jlbEstado = new javax.swing.JLabel();
         jrbAlta = new javax.swing.JRadioButton();
         jrbBaja = new javax.swing.JRadioButton();
-        jbNuevo = new javax.swing.JButton();
+        txtID = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jbActualizar = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
         jpPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaMaterias = new javax.swing.JTable();
-        jlbIngreseID = new javax.swing.JLabel();
         jbAlta = new javax.swing.JButton();
         jbBaja = new javax.swing.JButton();
-        txtID = new javax.swing.JTextField();
         jbBorrar = new javax.swing.JButton();
-        jbActualizar = new javax.swing.JButton();
-        jlbNombreA = new javax.swing.JLabel();
-        jlbAñoA = new javax.swing.JLabel();
-        jlbEstadoA = new javax.swing.JLabel();
-        txtNombreA = new javax.swing.JTextField();
-        txtAñoA = new javax.swing.JTextField();
-        jrbAltaA = new javax.swing.JRadioButton();
-        jrbBajaA = new javax.swing.JRadioButton();
-        jbSalir = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         jpPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 204), 4, true));
 
@@ -110,13 +104,33 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
             }
         });
 
-        jbNuevo.setBackground(new java.awt.Color(204, 204, 204));
-        jbNuevo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jbNuevo.setForeground(new java.awt.Color(0, 0, 153));
-        jbNuevo.setText("Nuevo");
-        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
+        txtID.setEditable(false);
+        txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbNuevoActionPerformed(evt);
+                txtIDActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Id:");
+
+        jbActualizar.setBackground(new java.awt.Color(51, 153, 255));
+        jbActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jbActualizar.setForeground(new java.awt.Color(0, 0, 153));
+        jbActualizar.setText("Actualizar");
+        jbActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbActualizarActionPerformed(evt);
+            }
+        });
+
+        jbSalir.setBackground(new java.awt.Color(255, 0, 51));
+        jbSalir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jbSalir.setForeground(new java.awt.Color(0, 0, 153));
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
             }
         });
 
@@ -126,34 +140,38 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
             jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPanelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jpPanelLayout.createSequentialGroup()
+                        .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPanelLayout.createSequentialGroup()
                         .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlbNombre)
-                            .addComponent(jlbAño))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAño, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1)
-                    .addGroup(jpPanelLayout.createSequentialGroup()
-                        .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpPanelLayout.createSequentialGroup()
+                                .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlbNombre)
+                                    .addComponent(jlbAño))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtAño, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jpPanelLayout.createSequentialGroup()
                                 .addComponent(jlbEstado)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jrbAlta))
-                            .addGroup(jpPanelLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(163, 163, 163))
-                            .addGroup(jpPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jrbBaja)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jrbAlta)
+                                .addGap(7, 7, 7)
+                                .addComponent(jrbBaja)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jpPanelLayout.setVerticalGroup(
             jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,20 +181,24 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbNombre)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbAño)
                     .addComponent(txtAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbEstado)
                     .addComponent(jrbAlta)
                     .addComponent(jrbBaja))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSubir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12))
         );
 
@@ -197,11 +219,12 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtTablaMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtTablaMateriasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtTablaMaterias);
-
-        jlbIngreseID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jlbIngreseID.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jlbIngreseID.setText("id de la materia que quiera modificar:");
 
         jbAlta.setBackground(new java.awt.Color(153, 255, 153));
         jbAlta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -233,114 +256,48 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
             }
         });
 
-        jbActualizar.setBackground(new java.awt.Color(51, 153, 255));
-        jbActualizar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jbActualizar.setForeground(new java.awt.Color(0, 0, 153));
-        jbActualizar.setText("Actualizar");
-        jbActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbActualizarActionPerformed(evt);
-            }
-        });
-
-        jlbNombreA.setText("Nombre");
-
-        jlbAñoA.setText("Año");
-
-        jlbEstadoA.setText("Estado");
-
-        jrbAltaA.setText("Alta");
-        jrbAltaA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbAltaAActionPerformed(evt);
-            }
-        });
-
-        jrbBajaA.setText("Baja");
-        jrbBajaA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbBajaAActionPerformed(evt);
-            }
-        });
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setText("Seleccione la fila que desea actualizar");
 
         javax.swing.GroupLayout jpPanel2Layout = new javax.swing.GroupLayout(jpPanel2);
         jpPanel2.setLayout(jpPanel2Layout);
         jpPanel2Layout.setHorizontalGroup(
             jpPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPanel2Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(jpPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jlbIngreseID)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jpPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpPanel2Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jpPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jbBaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlbNombreA)
-                            .addComponent(jlbAñoA)
-                            .addComponent(jlbEstadoA)
-                            .addComponent(txtNombreA, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAñoA, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpPanel2Layout.createSequentialGroup()
-                        .addComponent(jrbAltaA)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jrbBajaA)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(3, 3, 3)
+                        .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jpPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jpPanel2Layout.setVerticalGroup(
             jpPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addGroup(jpPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlbIngreseID, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jpPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpPanel2Layout.createSequentialGroup()
-                        .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbNombreA)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombreA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbAñoA)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAñoA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jlbEstadoA)
-                        .addGap(1, 1, 1)
-                        .addGroup(jpPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jrbAltaA)
-                            .addComponent(jrbBajaA))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(jLabel4))
+                .addGap(2, 2, 2)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jpPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
-
-        jbSalir.setBackground(new java.awt.Color(255, 0, 51));
-        jbSalir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jbSalir.setForeground(new java.awt.Color(0, 0, 153));
-        jbSalir.setText("Salir");
-        jbSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSalirActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -348,26 +305,16 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jpPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -387,24 +334,27 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         System.out.println(evt.getActionCommand());
         try{
-            String nombre=txtNombreA.getText();
-            int año = Integer.parseInt(txtAñoA.getText());
-            if(nombre.isEmpty()){
+            int fila = jtTablaMaterias.getSelectedRow();
+            String nombre = txtNombre.getText();
+            int año = Integer.parseInt(txtAño.getText());
+            if(txtNombre.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Ingrese un nombre");
-            }else if(txtAñoA.getText().isEmpty()){
+            }else if(txtAño.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Ingrese un año");
             }else{
                 
-            Materia m = new Materia(nombre, año, estadoA);
+            Materia m = new Materia(nombre, año, estado);
             m.setId_materia(Integer.parseInt(txtID.getText()));//parseamos el valor id y le asignamos al object Materia
             materias.actualizarMateria(m);
+            cargarTabla();
+           
             }
-            
         }catch(java.lang.NumberFormatException error){
-            JOptionPane.showMessageDialog(null, error.getMessage());
+            JOptionPane.showMessageDialog(null, "Le falto ingresar el año!!!");
+        }catch(java.lang.ArrayIndexOutOfBoundsException error){
+            JOptionPane.showMessageDialog(null, "Seleccione la fila que desea modificar");
         }
-        cargarTabla();
-        bgEstadosA.clearSelection();
+         vaciarCampos();
     }//GEN-LAST:event_jbActualizarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -429,11 +379,17 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
         // TODO add your handling code here:
          try{
-         int id = Integer.parseInt(txtID.getText());
+         int filaSel= jtTablaMaterias.getSelectedRow();
+        String idd = String.valueOf(jtTablaMaterias.getValueAt(filaSel, 0));
+        int id = Integer.parseInt(idd);
          materias.darDeAlta(id);
          cargarTabla();
+         vaciarCampos();
         }catch(java.lang.NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "ERROR DE FORMATO");
+            
+        }catch(java.lang.ArrayIndexOutOfBoundsException error){
+            JOptionPane.showMessageDialog(null, "Seleccione la fila que desea modificar");
         }
        
     }//GEN-LAST:event_jbAltaActionPerformed
@@ -441,44 +397,53 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
         // TODO add your handling code here:
          try{
-        int id = Integer.parseInt(txtID.getText());
+        int filaSel= jtTablaMaterias.getSelectedRow();
+        String idd = String.valueOf(jtTablaMaterias.getValueAt(filaSel, 0));
+        int id = Integer.parseInt(idd);
         materias.darDeBaja(id);
         cargarTabla();
+        vaciarCampos();
         }catch(java.lang.NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "ERROR DE FORMATO");
+            
+        }catch(java.lang.ArrayIndexOutOfBoundsException error){
+            JOptionPane.showMessageDialog(null, "Seleccione la fila que desea modificar");
         }
         
     }//GEN-LAST:event_jbBajaActionPerformed
 
-    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
-        // TODO add your handling code here:
-        System.out.println(evt.getActionCommand());
-        txtNombre.setText("");
-        txtAño.setText("");
-        bgEstados.clearSelection();
-    }//GEN-LAST:event_jbNuevoActionPerformed
-
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
         // TODO add your handling code here:
          try{
-        int id = Integer.parseInt(txtID.getText());
+        int filaSel= jtTablaMaterias.getSelectedRow();
+        String idd = String.valueOf(jtTablaMaterias.getValueAt(filaSel, 0));
+        int id = Integer.parseInt(idd);
         materias.borrarMateria(id);
         cargarTabla();
+        vaciarCampos();
         }catch(java.lang.NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "ERROR DE FORMATO");
+            
+        }catch(java.lang.ArrayIndexOutOfBoundsException error){
+            JOptionPane.showMessageDialog(null, "Seleccione la fila que desea modificar");
         }
         
     }//GEN-LAST:event_jbBorrarActionPerformed
 
-    private void jrbAltaAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbAltaAActionPerformed
+    private void jtTablaMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMateriasMouseClicked
         // TODO add your handling code here:
-        estadoA= true;
-    }//GEN-LAST:event_jrbAltaAActionPerformed
+        int filaSel= jtTablaMaterias.getSelectedRow();
+        String id = String.valueOf(jtTablaMaterias.getValueAt(filaSel, 0));
+        String nombre = String.valueOf(jtTablaMaterias.getValueAt(filaSel, 1));
+        String año = String.valueOf(jtTablaMaterias.getValueAt(filaSel, 2));
+        txtAño.setText(año);
+        txtNombre.setText(nombre);
+        txtID.setText(id);
+    }//GEN-LAST:event_jtTablaMateriasMouseClicked
 
-    private void jrbBajaAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbBajaAActionPerformed
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
-        estadoA = false;
-    }//GEN-LAST:event_jrbBajaAActionPerformed
+    }//GEN-LAST:event_txtIDActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -486,33 +451,26 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup bgEstadosA;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbActualizar;
     private javax.swing.JButton jbAlta;
     private javax.swing.JButton jbBaja;
     private javax.swing.JButton jbBorrar;
-    private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
     private javax.swing.JButton jbSubir;
     private javax.swing.JLabel jlbAño;
-    private javax.swing.JLabel jlbAñoA;
     private javax.swing.JLabel jlbEstado;
-    private javax.swing.JLabel jlbEstadoA;
-    private javax.swing.JLabel jlbIngreseID;
     private javax.swing.JLabel jlbNombre;
-    private javax.swing.JLabel jlbNombreA;
     private javax.swing.JPanel jpPanel;
     private javax.swing.JPanel jpPanel2;
     private javax.swing.JRadioButton jrbAlta;
-    private javax.swing.JRadioButton jrbAltaA;
     private javax.swing.JRadioButton jrbBaja;
-    private javax.swing.JRadioButton jrbBajaA;
     private javax.swing.JTable jtTablaMaterias;
     private javax.swing.JTextField txtAño;
-    private javax.swing.JTextField txtAñoA;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNombreA;
     // End of variables declaration//GEN-END:variables
 
     private void armarTabla(){
@@ -521,6 +479,7 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
         modelo.addColumn("AÑO");
         modelo.addColumn("ESTADO");
         jtTablaMaterias.setModel(modelo);
+        
     }
     
     private void cargarTabla(){
@@ -531,12 +490,6 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
         
     }
     
-    /*private void borrarTabla(){
-        int ind= modelo.getRowCount()-1;
-        for (int i = ind; i <= 0; i--) {
-            modelo.removeRow(i);
-        }
-    }*/
     private void borrarTabla(){
     int ind = modelo.getRowCount() -1 ;
     for (int i = ind; i >= 0; i--) {
@@ -559,10 +512,18 @@ public class GestionMaterias extends javax.swing.JInternalFrame {
                 Materia m = new Materia(nombre, año, estado);
                 //lo cargamos a la base de datos mediante el MateriasData Static de Gestion
                 materias.cargarMateria(m);
+                vaciarCampos();
             } catch (java.lang.NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Ingrese el año en el formato correcto!!");
             }
         }
     }
-    
+    private void vaciarCampos(){
+        
+        txtNombre.setText("");
+        txtAño.setText("");
+        txtID.setText("");
+        bgEstados.clearSelection();
+        
+    }
 }
