@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class GestionInscripcion extends javax.swing.JInternalFrame {
 
     private DefaultTableModel tablaMateria = new DefaultTableModel();
-    
+    private boolean estado;
     private InscripcionesData inscData = new InscripcionesData();
     private MateriasData matData = new MateriasData();
     private AlumnosData alData = new AlumnosData();
@@ -133,6 +133,7 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
         });
 
         txtDatos.setEditable(false);
+        txtDatos.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
 
         jLabel7.setText("Datos del alumno");
 
@@ -193,8 +194,8 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(txtDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
@@ -270,6 +271,9 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
 
     private void jbInscribirAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInscribirAlumnoActionPerformed
         // TODO add your handling code here:
+        if(estado == true){
+            JOptionPane.showMessageDialog(null, "No puede inscribir, esta en la pestaña incorrecta");
+        }else{
         int filaSeleccionada = jtMaterias.getSelectedRow();
         int id = Integer.parseInt(jcAlumno.getSelectedItem().toString());
         if (filaSeleccionada != -1) {
@@ -282,10 +286,15 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
             inscData.cargarInscripion(i);
         }
         cargarDatosNoInscriptas(id);
+        }
     }//GEN-LAST:event_jbInscribirAlumnoActionPerformed
 
     private void jbAnularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAnularInscripcionActionPerformed
         // TODO add your handling code here:
+        if(estado == false){
+            JOptionPane.showMessageDialog(null, "No puede anular, esta en la pestaña incorrecta");
+        } else{
+        
         int filaSeleccionada = jtMaterias.getSelectedRow();
         int id = Integer.parseInt(jcAlumno.getSelectedItem().toString());
         
@@ -295,6 +304,7 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
             inscData.borrarInscripcionMateriaAlumno(a.getId(), idMateria);
         }
         cargarDatosInscriptas(id);
+        }
     }//GEN-LAST:event_jbAnularInscripcionActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -306,12 +316,14 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int id = Integer.parseInt(jcAlumno.getSelectedItem().toString());
         cargarDatosInscriptas(id);
+        estado = true;
     }//GEN-LAST:event_jrMateriaInscriptaActionPerformed
 
     private void jrMateriasNOinscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrMateriasNOinscActionPerformed
         // TODO add your handling code here:
         int id = Integer.parseInt(jcAlumno.getSelectedItem().toString());
         cargarDatosNoInscriptas(id);
+        estado = false;
     }//GEN-LAST:event_jrMateriasNOinscActionPerformed
 
     private void jcAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcAlumnoActionPerformed
