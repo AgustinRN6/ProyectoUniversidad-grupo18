@@ -956,11 +956,12 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
             //Se crea de antemano FechaDeNacimiento de tipo LocalDate (el que se utilizará en alumno
             LocalDate fechaNacimiento = null;
+            LocalDate fechaActual = LocalDate.now();
             if (fechaNacimientoDate == null) {
                 JOptionPane.showMessageDialog(null, "Debe colocar una fecha de nacimiento al alumno");
                 error++;
             } else { //Es para evitar la excepcion de objeto null
-
+                
                 //Se pasa de Date a LocalDate para tratarlo en nuestro sistema
                 fechaNacimiento = fechaNacimientoDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
@@ -969,6 +970,13 @@ public class GestionAlumnos extends javax.swing.JInternalFrame {
 
                 //Se coloca el formato en el LocalDate que será cargado a la fecha de nacimiento del Alumno
                 fechaNacimiento.format(formatoLocalDate);
+                
+                if (fechaNacimiento.isAfter(fechaActual)) {
+                    
+                    JOptionPane.showMessageDialog(null, "El alumno no puede nacer en el futuro");
+                    error++;
+                    
+                }
 
             }
 
