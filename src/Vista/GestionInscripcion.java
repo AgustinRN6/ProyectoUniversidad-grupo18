@@ -265,7 +265,10 @@ public class GestionInscripcion extends javax.swing.JInternalFrame {
         Iterator<Alumno> iterar = alData.mostrarAlumnos().iterator();
         while(iterar.hasNext()) {
             Alumno a = iterar.next();
-            jcAlumno.addItem(a.getId());
+            if (a.isEstado()) {
+                jcAlumno.addItem(a.getId());
+            }
+            
         }
     }
 
